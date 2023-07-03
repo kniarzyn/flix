@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
   def flop?
-    total_gross < 100_000
+    total_gross < 225_000_000
   end
 end
