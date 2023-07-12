@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flix</title>
+    <title>Super-Heroic Flix</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,11 +10,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="container">
+  <body>
     <%= render "layouts/header" %>
-    <div class="container">
+
+    <div class="content">
+      <%= render "layouts/flash" %>
+
       <%= yield %>
     </div>
+
     <%= render "layouts/footer" %>
   </body>
 </html>
