@@ -9,18 +9,26 @@ class Movie < ApplicationRecord
 
   validates :image_file_name, format: {
     with: /\w+\.(jpg|png)\z/i,
-    message: "must be a JPG or PNG image"
+    message: 'must be a JPG or PNG image'
   }
 
-  RATINGS = %w(G PG PG-13 R NC-17)
+  RATINGS = %w[G PG PG-13 R NC-17]
 
   validates :rating, inclusion: { in: RATINGS }
 
   def self.released
-    where("released_on < ?", Time.now).order("released_on desc")
+    where('released_on < ?', Time.now).order('released_on desc')
   end
 
   def flop?
     total_gross.blank? || total_gross < 225_000_000
+  end
+
+  def average_stars
+    reviews.average(:stars) || 0.0
+  end
+
+  def average_stars_as_percent
+    (average_stars / 5.0) * 100
   end
 end
