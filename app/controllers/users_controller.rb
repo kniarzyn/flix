@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      session[:user_id] = @user.id
       redirect_to @user, notice: 'Thank you for registering!'
     else
       render :new, status: :unprocessable_entity
@@ -37,6 +38,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
+    session[:user_id] = nil
     redirect_to root_url, status: :see_other, alert: 'Account successfully deleted!'
   end
 
